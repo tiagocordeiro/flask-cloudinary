@@ -12,19 +12,38 @@ def upload_file():
     upload_result = None
     thumbnail_url1 = None
     thumbnail_url2 = None
-    face_blur = None
+    thumbnail_pixelate = None
     if request.method == 'POST':
         file_to_upload = request.files['file']
         if file_to_upload:
             upload_result = upload(file_to_upload)
-            thumbnail_url1, options = cloudinary_url(upload_result['public_id'], format="jpg", crop="fill", width=100,
-                                                     height=100)
-            thumbnail_url2, options = cloudinary_url(upload_result['public_id'], format="jpg", crop="fill", width=200,
-                                                     height=100, radius=20, effect="sepia")
-            face_blur, options = cloudinary_url(upload_result['public_id'], format="jpg", crop="fill", width=200,
-                                                     height=300, radius=20, effect="pixelate_faces:9", gravity = "face")
-    return render_template('upload_form.html', upload_result=upload_result, thumbnail_url1=thumbnail_url1,
-                           thumbnail_url2=thumbnail_url2, face_blur=face_blur)
+            thumbnail_url1, options = cloudinary_url(
+                upload_result['public_id'],
+                format="jpg",
+                crop="fill",
+                width=100,
+                height=100)
+            thumbnail_url2, options = cloudinary_url(
+                upload_result['public_id'],
+                format="jpg",
+                crop="fill",
+                width=200,
+                height=100,
+                radius=20,
+                effect="sepia")
+            thumbnail_pixelate, options = cloudinary_url(
+                upload_result['public_id'],
+                format="jpg",
+                crop="fill",
+                width=200,
+                height=300,
+                radius=20,
+                effect="pixelate_faces:9",
+                gravity="face")
+    return render_template('upload_form.html', upload_result=upload_result,
+                           thumbnail_url1=thumbnail_url1,
+                           thumbnail_url2=thumbnail_url2,
+                           thumbnail_pixelate=thumbnail_pixelate)
 
 
 if __name__ == "__main__":
