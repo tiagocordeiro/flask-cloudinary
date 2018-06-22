@@ -19,6 +19,7 @@ $ source venv/bin/activate
 ```
 * Browse to http://127.0.0.1:5000/
 
-
+# TODO
+[ ] Melhorar documentação
 
 Good luck!
