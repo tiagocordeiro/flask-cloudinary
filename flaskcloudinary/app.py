@@ -4,8 +4,12 @@ from cloudinary.uploader import upload
 from cloudinary.utils import cloudinary_url
 from flask import Flask, render_template, request
 
+
 def create_app():
     application = Flask(__name__)
+    application.config.from_mapping(
+        CLOUDINARY_URL=os.environ.get('CLOUDINARY_URL') or 'Pegue a sua Key',
+    )
 
     @application.route('/', methods=['GET', 'POST'])
     def upload_file():
@@ -40,9 +44,11 @@ def create_app():
                     radius=20,
                     effect="pixelate_faces:9",
                     gravity="face")
-        return render_template('upload_form.html', upload_result=upload_result,
-                            thumbnail_url1=thumbnail_url1,
-                            thumbnail_url2=thumbnail_url2,
-                            thumbnail_pixelate=thumbnail_pixelate)
+        return render_template(
+            'upload_form.html',
+            upload_result=upload_result,
+            thumbnail_url1=thumbnail_url1,
+            thumbnail_url2=thumbnail_url2,
+            thumbnail_pixelate=thumbnail_pixelate)
 
     return application
