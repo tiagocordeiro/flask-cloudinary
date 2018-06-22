@@ -8,7 +8,7 @@ wrapt==1.10.11
 
 # flake8
 flake8==3.5.0
-pycodestyle==2.3.1
+pycodestyle==2.4.0
 pyflakes==1.6.0
 
 # pytest
