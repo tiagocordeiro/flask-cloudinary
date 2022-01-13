@@ -2,7 +2,7 @@
 Flask==1.1.2
 
 # Cloudinary
-cloudinary==1.24.0
+cloudinary==1.28.1
 
 # Heroku
 gunicorn==20.0.4
